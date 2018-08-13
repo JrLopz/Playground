@@ -1,0 +1,26 @@
+<apex:page controller="Agenda" docType="html-5.0">
+    <apex:relatedList list="Asistencia__c" />
+    <apex:form >
+      <apex:pageBlock title="Agenda de Clases" id="agenda_de_clases" >
+      <p>Complete los Campos para realizar su registo</p> 
+            <apex:pageBlockSection columns="3">
+              <apex:inputField value="{!materia.Materia__c}"/>
+              <apex:inputField value="{!alumno.Name}"/>
+                <apex:input type="datetime-local" value="{!hora}" /> 
+            </apex:pageBlockSection>
+          <apex:pageBlockButtons >    
+            <apex:commandButton value="save" action="{!save}"/>
+          </apex:pageBlockButtons> 
+            
+                <apex:pageBlockTable value="{!asistencia}" var="ag" id="RP">
+                    <apex:repeat value="{!asistencia}" var="actualizar">
+                        <apex:outputText value="actualizar" id="theValue"/><br/> 
+                    </apex:repeat> 
+                    <apex:column value="{! ag.Name}"/>
+                    <apex:column value="{! ag.Clase__r.Materia__c}"/>
+                    <apex:column value="{! ag.Alumno__c}"/>
+                    <apex:column value="{! ag.Hora__c}"/>                    
+                </apex:pageBlockTable>
+      </apex:pageBlock>
+    </apex:form>   
+</apex:page>

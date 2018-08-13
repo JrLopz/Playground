@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Clase</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Clases</value>
+    </caseValues>
+    <fields>
+        <label><!-- Maestro --></label>
+        <name>Maestro__c</name>
+        <relationshipLabel><!-- Clases --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Materia --></label>
+        <name>Materia__c</name>
+        <picklistValues>
+            <masterLabel>Español</masterLabel>
+            <translation><!-- Español --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Matemáticas</masterLabel>
+            <translation><!-- Matemáticas --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Química</masterLabel>
+            <translation><!-- Química --></translation>
+        </picklistValues>
+    </fields>
+    <gender>Feminine</gender>
+</CustomObjectTranslation>
