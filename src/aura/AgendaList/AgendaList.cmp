@@ -1,0 +1,54 @@
+<aura:component controller="agendaController">
+
+  <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+  <aura:attribute name="myAgenda" type="Object"/>
+  <aura:attribute name="columns" type="List"/>
+  <aura:attribute name="tiempo" type="Datetime"/>
+    
+  <div aria-labelledby="newagendaform">
+    <fieldset class="slds-box slds-theme--default slds-container--small">
+      <legend id="newagendaform" class="slds-text-heading--small
+        slds-p-vertical--medium">
+        Add New class
+      </legend>
+      <form class="slsd-form--stacked">
+
+    <div>
+        <lightning:input 
+          aura:id="search-Clase" 
+          name="search-Clase"
+          label="Enter your Clase"
+          type="search"/>
+    </div>
+
+    <div>
+        <lightning:input 
+          aura:id="search-Alumno" 
+          name="search-Alumno"
+          label="Enter your Name"
+          type="search"/>
+    </div>
+
+        <lightning:input type="datetime" name="Hora" value="{!v.tiempo}" Label="Enter a Date/Time value" />
+
+        <lightning:button label="Agendar"
+          class="slds-m-top--medium"
+          variant="brand"
+          onclick="{!c.submitForm}"/>  
+      </form>
+     </fieldset>                
+</div>   
+
+    <div class="slds-card slds-p-top--medium">
+        <header class="slds-card__header">
+            <h3 class="slds-text-heading--small">Agendados</h3>
+        </header>
+        <div style="height: 300px">
+        <lightning:datatable
+                keyField="id"
+                data="{! v.myAgenda }"
+                columns="{! v.columns }"
+                hideCheckboxColumn="true"/>
+    </div>
+    </div>
+</aura:component>
