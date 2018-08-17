@@ -13,11 +13,15 @@ public with sharing class agendaController {
     }
 
     @AuraEnabled
-    public static String agendar(String name, String materia, Datetime hora){
+    public static Asistencia__c deleteAsistencia(Asistencia__c asiss) {
+        delete asiss;
+        return asiss;
+    }
+
+    @AuraEnabled
+    public static String agendar(Id name, Id materia, Datetime hora){
         try{
-        Alumno__c alu = searchAlumno(name);
-        Clase__c cl = searchClase(materia);
-        Asistencia__c newas = new Asistencia__c(Clase__c=cl.Id, Alumno__c=alu.Id, Hora__c= hora);
+        Asistencia__c newas = new Asistencia__c(Clase__c=materia, Alumno__c=name, Hora__c= hora);
 
         insert newas;
 
