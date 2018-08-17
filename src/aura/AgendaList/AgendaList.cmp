@@ -4,6 +4,8 @@
   <aura:attribute name="myAgenda" type="Object"/>
   <aura:attribute name="columns" type="List"/>
   <aura:attribute name="tiempo" type="Datetime"/>
+  <aura:attribute name="selectedAlumno" type="sObject" default="{}"/>
+  <aura:attribute name="selectedClase" type="sObject" default="{}"/>
     
   <div aria-labelledby="newagendaform">
     <fieldset class="slds-box slds-theme--default slds-container--small">
@@ -14,19 +16,19 @@
       <form class="slsd-form--stacked">
 
     <div>
-        <lightning:input 
-          aura:id="search-Clase" 
-          name="search-Clase"
-          label="Enter your Clase"
-          type="search"/>
+      <c:customLookup objectAPIName="Clase__c" 
+      IconName="standard:account"
+      label="Clase" 
+      selectedRecord="{!v.selectedClase}"/>
     </div>
+        
+
 
     <div>
-        <lightning:input 
-          aura:id="search-Alumno" 
-          name="search-Alumno"
-          label="Enter your Name"
-          type="search"/>
+      <c:customLookup objectAPIName="Alumno__c"
+      IconName="standard:account" 
+      label="Alumno" 
+      selectedRecord="{!v.selectedAlumno}"/>
     </div>
 
         <lightning:input type="datetime" name="Hora" value="{!v.tiempo}" Label="Enter a Date/Time value" />
@@ -48,6 +50,7 @@
                 keyField="id"
                 data="{! v.myAgenda }"
                 columns="{! v.columns }"
+                onrowaction="{! c.handleRowAction }"
                 hideCheckboxColumn="true"/>
     </div>
     </div>

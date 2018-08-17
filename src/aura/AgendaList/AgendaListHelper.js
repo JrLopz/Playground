@@ -1,9 +1,10 @@
 ({
 	createAgenda : function(component) {
 		var action = component.get("c.agendar");
-		var name = component.find("search-Alumno").get("v.value");
-		var materia = component.find("search-Clase").get("v.value");
+		var name = component.get("v.selectedAlumno").Id;
+		var materia = component.get("v.selectedClase").Id;
 		var hora = component.get("v.tiempo");
+		   
 		action.setParams({"name":name,"materia":materia,"hora":hora});
 		action.setCallback(this, function(response){
 			var state = response.getState();
@@ -20,6 +21,7 @@
 			else{
 				console.log("Failed with state: " + state);			
 			}
+			
 		});
 
 		$A.enqueueAction(action);
@@ -68,5 +70,18 @@
 	}
 	recurse(data, "");
 	return result;
+},
+
+removeBook: function (component, row) {
+	var action = component.get("c.deleteAsistencia");
+	action.setParams({"asiss": row}); 
+	action.setCallback(this, function(response){
+		var state = response.getState();
+		if (state === "SUCCESS") {
+			alert("Borrado correctamente");
+			this.getAsistencias(component);
+		}		
+	});
+	$A.enqueueAction(action);
 }
 })
